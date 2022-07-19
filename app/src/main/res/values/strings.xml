@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">UltimateCalfTracker</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_calf_navigate">used to navigate to the nex calf page</string>
+    <string name="add_calf">used to add a new calf to our database</string>
+    <string name="cancel_calf">used to cancel the addition of the new calf and navigate back to the home page</string>
+</resources>
