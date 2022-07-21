@@ -2,15 +2,17 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginEnd="8dp"
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp">
-    <RelativeLayout
+    <com.elliottsoftware.ultimatecalftracker.ui.TapToExpandView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:childToCollapse="4"
         android:padding="8dp">
         <TextView
-            android:id="@+id/text_view_priority"
+            android:id="@+id/text_view_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -25,7 +27,7 @@
             android:text="TD104"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:maxLines = "1"
-            android:layout_toStartOf="@id/text_view_priority"
+            android:layout_toStartOf="@id/text_view_date"
             android:layout_alignParentStart="true"
             android:ellipsize="end" />
         <TextView
@@ -37,7 +39,7 @@
             android:layout_alignParentStart="true"
             android:maxLines = "1"
             android:ellipsize="end"
-            android:layout_toStartOf="@id/text_view_priority"
+            android:layout_toStartOf="@id/text_view_date"
 
             />
         <TextView
@@ -47,11 +49,35 @@
             android:layout_below="@id/text_view_title"
             android:layout_alignParentEnd="true"
             android:text="Male"
-
             />
 
 
-    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_sex"
+            android:visibility="gone"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:layout_alignParentRight="true"
+                style="?attr/materialButtonOutlinedStyle"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?attr/materialButtonOutlinedStyle"
+
+                android:text="Delete" />
+
+        </RelativeLayout>
+
+
+
+
+    </com.elliottsoftware.ultimatecalftracker.ui.TapToExpandView>
 
 
 </androidx.cardview.widget.CardView>
