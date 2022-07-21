@@ -18,5 +18,9 @@
         android:id="@+id/addCalfFragment"
         android:name="com.elliottsoftware.ultimatecalftracker.fragments.AddCalfFragment"
         android:label="fragment_add_calf"
-        tools:layout="@layout/fragment_add_calf" />
+        tools:layout="@layout/fragment_add_calf" >
+        <action
+            android:id="@+id/action_addCalfFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>
