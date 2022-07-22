@@ -13,6 +13,9 @@ class CalfViewModel(private val repository: CalfRepository): ViewModel() {
     fun insert(calf: Calf) = viewModelScope.launch {
         repository.insert(calf)
     }
+    fun delete(calf:Calf) = viewModelScope.launch {
+        repository.delete(calf)
+    }
 }
 
 class CalfViewModelFactory(private val repository: CalfRepository): ViewModelProvider.Factory{
