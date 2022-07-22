@@ -14,20 +14,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.elliottsoftware.ultimatecalftracker.R
 import com.elliottsoftware.ultimatecalftracker.database.CalfApplication
 import com.elliottsoftware.ultimatecalftracker.databinding.FragmentMainBinding
+import com.elliottsoftware.ultimatecalftracker.models.Calf
 import com.elliottsoftware.ultimatecalftracker.recyclerViews.CalfListAdapter
+import com.elliottsoftware.ultimatecalftracker.recyclerViews.OnCalfListener
 import com.elliottsoftware.ultimatecalftracker.viewModels.CalfViewModel
 import com.elliottsoftware.ultimatecalftracker.viewModels.CalfViewModelFactory
 
 /**
  * A simple [Fragment] subclass.
  */
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), OnCalfListener {
     private var _binding: FragmentMainBinding? = null
     private val binding:FragmentMainBinding get() = _binding!!
-
     private val calfViewModel:CalfViewModel by viewModels {
         CalfViewModelFactory((activity?.application as CalfApplication).repository)
     }
+
 
 
 
@@ -48,7 +50,7 @@ class MainFragment : Fragment() {
             Navigation.findNavController(it).navigate(R.id.action_mainFragment_to_addCalfFragment)
         }
         val recyclerView = binding.recyclerview
-        val adapter = CalfListAdapter()
+        val adapter = CalfListAdapter(this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(view.context)
 
@@ -63,6 +65,15 @@ class MainFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    /**todo: NEED TO FAIL GRACEFULLY IF THERE IS NO POSITION FOUND
+     */
+    override fun onDeleteCalfClick(position: Long) {
+      val calf: List<Calf>? =  calfViewModel.allCalves.value
+        val foundCalf:Calf? = calf?.find { calf: Calf -> calf.id == position  }
+        calfViewModel.delete(foundCalf!!)
+
     }
 
 

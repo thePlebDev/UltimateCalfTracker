@@ -1,9 +1,6 @@
 package com.elliottsoftware.ultimatecalftracker.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.elliottsoftware.ultimatecalftracker.models.Calf
 import kotlinx.coroutines.flow.Flow
 
@@ -18,5 +15,9 @@ interface CalfDao {
 
     @Query("DELETE FROM calf")
     suspend fun deleteAll()
+
+    @Delete
+    suspend fun deleteCalf( calf: Calf)
+
 
 }
