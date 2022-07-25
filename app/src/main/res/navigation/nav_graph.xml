@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mainFragment_to_addCalfFragment"
             app:destination="@id/addCalfFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_editCalfFragment"
+            app:destination="@id/editCalfFragment" />
     </fragment>
     <fragment
         android:id="@+id/addCalfFragment"
@@ -22,5 +25,17 @@
         <action
             android:id="@+id/action_addCalfFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editCalfFragment"
+        android:name="com.elliottsoftware.ultimatecalftracker.fragments.EditCalfFragment"
+        android:label="fragment_edit_calf"
+        tools:layout="@layout/fragment_edit_calf" >
+        <action
+            android:id="@+id/action_editCalfFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <argument
+            android:name="calfId"
+            app:argType="long" />
     </fragment>
 </navigation>

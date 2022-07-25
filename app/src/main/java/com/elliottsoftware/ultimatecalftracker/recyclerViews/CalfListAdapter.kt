@@ -1,5 +1,6 @@
 package com.elliottsoftware.ultimatecalftracker.recyclerViews
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +15,7 @@ import com.elliottsoftware.ultimatecalftracker.models.Calf
 import java.text.SimpleDateFormat
 
 class CalfListAdapter(listener:OnCalfListener):ListAdapter<Calf,CalfViewHolder>(CalfComparator()) {
-        val calfListener:OnCalfListener = listener
+        private val calfListener:OnCalfListener = listener
     //methods on the Adapter get
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalfViewHolder {
         return CalfViewHolder.create(parent)
@@ -31,7 +32,8 @@ class CalfListAdapter(listener:OnCalfListener):ListAdapter<Calf,CalfViewHolder>(
 
 }
 interface OnCalfListener{
-    fun onDeleteCalfClick(position:Long)
+    fun onDeleteCalfClick(calfId:Long)
+    fun onEditCalfClick(calfId:Long)
 }
 
 class CalfViewHolder(calfView: View): RecyclerView.ViewHolder(calfView){
@@ -40,6 +42,7 @@ class CalfViewHolder(calfView: View): RecyclerView.ViewHolder(calfView){
     private val details:TextView = calfView.findViewById(R.id.text_view_description)
     private val sex:TextView = calfView.findViewById(R.id.text_view_sex)
     private val deleteButton:Button = calfView.findViewById(R.id.delete_calf)
+    private val editButton:Button = calfView.findViewById(R.id.edit_calf)
 
 
 
@@ -54,6 +57,9 @@ class CalfViewHolder(calfView: View): RecyclerView.ViewHolder(calfView){
 
         deleteButton.setOnClickListener{
                 listener.onDeleteCalfClick(calf.id)
+        }
+        editButton.setOnClickListener {
+            listener.onEditCalfClick(calf.id)
         }
 
     }

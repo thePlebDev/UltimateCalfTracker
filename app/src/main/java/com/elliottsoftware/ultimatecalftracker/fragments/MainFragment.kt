@@ -68,12 +68,18 @@ class MainFragment : Fragment(), OnCalfListener {
     }
 
     /**todo: NEED TO FAIL GRACEFULLY IF THERE IS NO POSITION FOUND
+     * //currentyl just crashes if there is no calf found
      */
-    override fun onDeleteCalfClick(position: Long) {
+    override fun onDeleteCalfClick(calfId: Long) {
       val calf: List<Calf>? =  calfViewModel.allCalves.value
-        val foundCalf:Calf? = calf?.find { calf: Calf -> calf.id == position  }
+        val foundCalf:Calf? = calf?.find { calf: Calf -> calf.id == calfId  }
         calfViewModel.delete(foundCalf!!)
 
+    }
+
+    override fun onEditCalfClick(calfId:Long) {
+            val action = MainFragmentDirections.actionMainFragmentToEditCalfFragment(calfId)
+            Navigation.findNavController(binding.root).navigate(action)
     }
 
 

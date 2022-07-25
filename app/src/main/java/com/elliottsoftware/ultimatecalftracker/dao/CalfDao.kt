@@ -19,5 +19,19 @@ interface CalfDao {
     @Delete
     suspend fun deleteCalf( calf: Calf)
 
+    @Update
+    suspend fun updateCalf(calf:Calf)
+
+    @Query("SELECT * FROM calf WHERE calf.id==:calfId")
+     suspend fun findCalf(calfId:Long):Calf
+
+
+
+
+
+
+
+
+
 
 }
