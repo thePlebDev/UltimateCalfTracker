@@ -5,4 +5,6 @@
     <string name="add_calf_navigate">used to navigate to the nex calf page</string>
     <string name="add_calf">used to add a new calf to our database</string>
     <string name="cancel_calf">used to cancel the addition of the new calf and navigate back to the home page</string>
+    <string name="update_calf">used to add a update existing calf and save it to our database</string>
+    <string name="update_cancel_calf">used to cancel the update of the calf and navigate back to the home page</string>
 </resources>

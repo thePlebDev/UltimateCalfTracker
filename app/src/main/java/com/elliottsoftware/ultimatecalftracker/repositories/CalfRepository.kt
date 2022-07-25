@@ -26,5 +26,41 @@ class CalfRepository(private val calfDao: CalfDao) {
         calfDao.deleteCalf(calf)
     }
 
+    @WorkerThread
+    suspend fun findCalf(calfId:Long):Calf{
+        return calfDao.findCalf(calfId)
+    }
+
+    @WorkerThread
+    suspend fun updateCalf(calf:Calf){
+        calfDao.updateCalf(calf)
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
