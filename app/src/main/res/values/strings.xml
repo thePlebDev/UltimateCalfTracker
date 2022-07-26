@@ -7,4 +7,7 @@
     <string name="cancel_calf">used to cancel the addition of the new calf and navigate back to the home page</string>
     <string name="update_calf">used to add a update existing calf and save it to our database</string>
     <string name="update_cancel_calf">used to cancel the update of the calf and navigate back to the home page</string>
+    <string name="search_hint">Search tag number</string>
+    <string name="app_label">UltimateCalfTracker</string>
+    <string name="search_title">Search tag number</string>
 </resources>
