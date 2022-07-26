@@ -1,14 +1,14 @@
 package com.elliottsoftware.ultimatecalftracker.fragments
 
 import android.os.Bundle
+import android.view.*
+import androidx.appcompat.widget.SearchView
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
-
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.elliottsoftware.ultimatecalftracker.R
@@ -20,6 +20,7 @@ import com.elliottsoftware.ultimatecalftracker.recyclerViews.OnCalfListener
 import com.elliottsoftware.ultimatecalftracker.viewModels.CalfViewModel
 import com.elliottsoftware.ultimatecalftracker.viewModels.CalfViewModelFactory
 
+
 /**
  * A simple [Fragment] subclass.
  */
@@ -29,6 +30,7 @@ class MainFragment : Fragment(), OnCalfListener {
     private val calfViewModel:CalfViewModel by viewModels {
         CalfViewModelFactory((activity?.application as CalfApplication).repository)
     }
+    // The usage of an interface lets you inject your own implementation
 
 
 
@@ -59,6 +61,23 @@ class MainFragment : Fragment(), OnCalfListener {
         calfViewModel.allCalves.observe(viewLifecycleOwner, Observer { calves ->
             calves?.let{adapter.submitList(it)}
         })
+//        setHasOptionsMenu(true) //we can still use this but it is depreciated
+        //todo: change this out into a different class
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                // Add menu items here
+                menuInflater.inflate(R.menu.options_menu, menu)
+                val searchItem = menu.findItem(R.id.search)
+                val searchView = searchItem.actionView as SearchView // this now behaves as a EditText
+                //going to create a extension function
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+
+                return true
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
 
@@ -81,6 +100,8 @@ class MainFragment : Fragment(), OnCalfListener {
             val action = MainFragmentDirections.actionMainFragmentToEditCalfFragment(calfId)
             Navigation.findNavController(binding.root).navigate(action)
     }
+
+
 
 
 }
